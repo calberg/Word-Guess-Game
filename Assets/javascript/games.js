@@ -19,6 +19,8 @@
     }
 
     //Checks if the letter that is input is contained within the word
+    //Try to clear each letter after it is typed
+    //End the loop and play song
     function Letter()
     {
         var letter = document.getElementById("letter").value;
