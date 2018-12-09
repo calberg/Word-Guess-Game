@@ -5,8 +5,7 @@
     var r;
     var count = 0;
     var answerArr = [];
-    //var remainingLetters = word.length;
-
+    
 
     //Creates the _ _ _ _ pattern for the word length
     function startUp(){
@@ -19,28 +18,49 @@
     }
 
     //Checks if the letter that is input is contained within the word
-    //Try to clear each letter after it is typed
-    //End the loop and play song
-    function Letter()
+    //TO DO  play song
+    document.onkeyup = function (event)
     {
-        var letter = document.getElementById("letter").value;
-        if (letter.length > 0)
+        let guessedWord = "";
+        var letter = event.key;
+        console.log(letter);
+
+        if (letter.length===1 && letter>='a' && letter<='z' || letter===" ")
         {
-                for (var i = 0; i < randomWord.length; i++)
+            for (var i = 0; i < randomWord.length; i++)
+            {
+                if (randomWord[i] === letter)
                 {
-                    if (randomWord[i] === letter)
-                    {
-                        answerArr[i] = letter;
-                        //remainingLetters--;
-                    }
+                    answerArr[i] = letter;
+                    
                 }
-                count++;
-                //document.getElementById("remaining").innerHTML = 
-                document.getElementById("counter").innerHTML = "Number of clicks: " + count;
-                document.getElementById("answer").innerHTML = answerArr.join(" ");
+                
+                
+            }
+            count++;
+            document.getElementById("counter").innerHTML = "Number of guesses: " + count;
+            document.getElementById("answer").innerHTML = answerArr.join(" ");
         }
-        if(count>5)
-        {
-            document.getElementById("stat").innerHTML = "Sometimes science is more art than science, Morty."
-        }
+        for (let i = 0; i<answerArr.length; i++)
+                    {
+                        guessedWord = guessedWord.concat(answerArr[i]);
+                    }
+                    console.log(answerArr.toString());
+                    console.log(randomWord)
+                    console.log(guessedWord)
+                        if (guessedWord === randomWord)
+                    {
+                        document.getElementById("stat").innerHTML = "Sometimes science is more art than science, Morty.";
+                        
+                        //Trying to get the image to show up after they have correctly guesses the word. I got the quote, but can't get the image to show.
+                        function show_image(src, width, height, alt) {
+                            var img = document.createElement("img");
+                            img.src = /Users/chrisalberg/~code/Homework/Word-Guess-Game/Assets/images/rickandmorty.jpg;
+                            img.width = width;
+                            img.height = height;
+                            img.alt = alt;
+                            document.getElementById("stat").appendChild(img); 
+                          }
+                    }
+                
     }
